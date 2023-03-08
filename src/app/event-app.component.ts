@@ -9,7 +9,7 @@ class EventService {
   selector: 'events-app',
   template: ` <div>
     <app-nav-bar></app-nav-bar>
-    <app-events-list [events]="events"></app-events-list>
+    <router-outlet></router-outlet>
   </div>
   `})
 export class EventAppComponent  {
