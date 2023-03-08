@@ -1,17 +1,29 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {IEvent} from './event';
+import {EventsService} from './shared/events.service';
+import {ToastrService} from '../common/toastr.service';
+
 
 
 @Component({
   selector: 'app-events-list',
   templateUrl: './events-list.component.html',
 })
-export class EventsListComponent{
-  @Input() event: IEvent;
+export class EventsListComponent implements OnInit{
+  constructor(private eventService: EventsService, private toastr: ToastrService) {
+  }
+  @Input() events: IEvent[];
   nameEvent = '';
 
   handleEventClicked(data: string): void {
     console.log('received: ', data);
     this.nameEvent = data;
+  }
+  ngOnInit(): void{
+    this.events = this.eventService.getEvents();
+  }
+  onClickThumbnail(event: IEvent): void {
+    console.log('received: ', event);
+    this.toastr.success(event.name);
   }
 }

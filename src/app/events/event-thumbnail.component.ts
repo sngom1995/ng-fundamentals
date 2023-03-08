@@ -3,18 +3,27 @@ import {IEvent} from './event';
 
 @Component({
   selector: 'app-events-thumbnail',
-  template: `<div  class="well hoverwell thumbnail">
+  template: `<div class="well hoverwell thumbnail">
     <h2>{{event.name}}</h2>
     <div>Date: {{event.date}}</div>
-    <div>Time: {{event.time}}</div>
-    <div>Price: \${{event.price}}</div>
-    <div>
-      <span>Location: {{event.location.address}}</span>
-      <span>&nbsp;</span>
-      <span class="pad-left">{{event.location.city}}, {{event.location.country}}</span>
+    <div [ngStyle]="getStartTimeStyle()" [ngSwitch]="event.time">
+      Time: {{event.time}}
+      <span *ngSwitchCase="'8:00 am'">(Early Start)</span>
+      <span *ngSwitchCase="'10:00 am'">(Late Start)</span>
+      <span *ngSwitchDefault>(Normal Start)</span>
     </div>
+    <div>Price: \${{event.price}}</div>
+    <div *ngIf="event.location">
+      <span>Location: {{event.location?.address}}</span>
+      <span>&nbsp;</span>
+      <span class="pad-left">{{event.location?.city}}, {{event.location?.country}}</span>
+    </div>
+    <div>OnlineUr: {{event.onlineUrl}}</div>
   </div>`,
-  styles: [`.thumbnail { min-height: 210px; } .pad-left { margin-left: 10px; }  .well div { color: #bbb; }`]
+  styles: [`
+    .thumbnail { min-height: 210px; }
+    .pad-left { margin-left: 10px; }
+    .well div { color: #bbb; }`]
 })
 export class EventThumbnailComponent {
   @Input() event: IEvent;
@@ -23,7 +32,12 @@ export class EventThumbnailComponent {
   nameEvent = '';
   handleClickMe(): void {
     this.eventClick.emit(this.event.name);
-    this.nameEvent = this.event.name;
-    console.log(this.event.name);
+  }
+
+  getStartTimeStyle(): any {
+    if (this.event && this.event.time === '8:00 am') {
+      return {color: '#003300', 'font-weight': 'bold'};
+    }
+    return {};
   }
 }

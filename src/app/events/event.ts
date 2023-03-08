@@ -1,7 +1,17 @@
+interface ISession {
+  id: number;
+  name: string;
+  presenter: string;
+  duration: number;
+  level: string;
+  abstract: string;
+  voters: string[];
+}
+
 export interface IEvent {
   id: number;
   name: string;
-  date: string
+  date: string;
   time: string;
   price: number;
   imageUrl: string;
@@ -10,4 +20,6 @@ export interface IEvent {
     city: string;
     country: string;
   };
+  onlineUrl?: string;
+  sessions?: ISession[];
 }
