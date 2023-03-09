@@ -1,5 +1,6 @@
 import {IEvent} from '../event';
 import {Injectable} from '@angular/core';
+import {Subject} from 'rxjs';
 const  EVENTS: IEvent[]  = [
   {
     id: 1,
@@ -316,8 +317,10 @@ const  EVENTS: IEvent[]  = [
 )
 export  class EventsService{
 
-  getEvents(): IEvent[] {
-    return EVENTS;
+  getEvents(): Subject<IEvent[]> {
+    const subject = new Subject<IEvent[]>();
+    setTimeout(() => { subject.next(EVENTS); subject.complete(); }, 2000);
+    return subject;
   }
 
   getEvent(id: number): IEvent {

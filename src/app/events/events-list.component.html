@@ -3,7 +3,7 @@
   <hr>
   <div class="row">
     <div class="col-md-5" *ngFor="let event of events">
-      <app-events-thumbnail [routerLink]="['/events', event.id]" (click)="onClickThumbnail(event)" [event]="event"></app-events-thumbnail>
+      <app-events-thumbnail [routerLink]="['/events', event.id]"  [event]="event"></app-events-thumbnail>
   </div>
 </div>
 </div>
