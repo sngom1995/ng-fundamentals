@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { EventAppComponent } from './event-app.component';
-import { EventsListComponent } from './events/events-list.component';
-import {EventThumbnailComponent} from './events/event-thumbnail.component';
-import {NavBarComponent} from './nav/nav-bar.component';
-import {EventsService} from './events/shared/events.service';
-import {EventDetailsComponent} from './events/event-details/event-details.component';
 import {RouterModule} from '@angular/router';
 import {routes} from './routes';
-import {CreateEventComponent} from './events/create-event.component';
 import {Error404Component} from './errors/404.component';
-import {EventListResolverService} from './events/event-list-resolver.service';
+
+import {
+  CreateEventComponent,
+  EventsService,
+  EventListResolverService,
+  EventsListComponent,
+  EventThumbnailComponent,
+  EventDetailsComponent} from './events/index';
+import {EventAppComponent} from './event-app.component';
+import {NavBarComponent} from './nav/nav-bar.component';
 
 export const checkDirtyState = (component: CreateEventComponent) => {
   if (component.isDirty) {
@@ -33,7 +35,7 @@ export const checkDirtyState = (component: CreateEventComponent) => {
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
   ],
   providers: [
     EventsService,

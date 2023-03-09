@@ -319,7 +319,7 @@ export  class EventsService{
 
   getEvents(): Subject<IEvent[]> {
     const subject = new Subject<IEvent[]>();
-    setTimeout(() => { subject.next(EVENTS); subject.complete(); }, 2000);
+    setTimeout(() => { subject.next(EVENTS); subject.complete(); }, 100);
     return subject;
   }
 
