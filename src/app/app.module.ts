@@ -14,6 +14,7 @@ import {
   EventDetailsComponent} from './events/index';
 import {EventAppComponent} from './event-app.component';
 import {NavBarComponent} from './nav/nav-bar.component';
+import {UserService} from './user/user.service';
 
 export const checkDirtyState = (component: CreateEventComponent) => {
   if (component.isDirty) {
@@ -40,7 +41,8 @@ export const checkDirtyState = (component: CreateEventComponent) => {
   providers: [
     EventsService,
     {provide: 'canDeactivateCreateEvent', useValue: checkDirtyState},
-    EventListResolverService
+    EventListResolverService,
+    UserService
   ],
   bootstrap: [EventAppComponent]
 })
