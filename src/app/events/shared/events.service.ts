@@ -326,4 +326,10 @@ export  class EventsService{
   getEvent(id: number): IEvent {
     return EVENTS.find(event => event.id === id);
   }
+
+  saveEvent(formValues): void {
+    formValues.id = EVENTS.length + 1;
+    formValues.sessions = [];
+    EVENTS.push(formValues);
+  }
 }

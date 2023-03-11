@@ -15,6 +15,7 @@ import {
 import {EventAppComponent} from './event-app.component';
 import {NavBarComponent} from './nav/nav-bar.component';
 import {UserService} from './user/user.service';
+import {FormsModule} from '@angular/forms';
 
 export const checkDirtyState = (component: CreateEventComponent) => {
   if (component.isDirty) {
@@ -36,6 +37,7 @@ export const checkDirtyState = (component: CreateEventComponent) => {
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot(routes),
   ],
   providers: [
