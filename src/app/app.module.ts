@@ -11,11 +11,12 @@ import {
   EventListResolverService,
   EventsListComponent,
   EventThumbnailComponent,
-  EventDetailsComponent} from './events/index';
+  EventDetailsComponent, SessionListComponent, CreateSessionComponent
+} from './events/index';
 import {EventAppComponent} from './event-app.component';
 import {NavBarComponent} from './nav/nav-bar.component';
 import {UserService} from './user/user.service';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 export const checkDirtyState = (component: CreateEventComponent) => {
   if (component.isDirty) {
@@ -33,11 +34,14 @@ export const checkDirtyState = (component: CreateEventComponent) => {
     NavBarComponent,
     EventDetailsComponent,
     CreateEventComponent,
-    Error404Component
+    Error404Component,
+    CreateSessionComponent,
+    SessionListComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes),
   ],
   providers: [

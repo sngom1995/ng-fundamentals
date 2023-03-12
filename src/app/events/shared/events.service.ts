@@ -332,4 +332,9 @@ export  class EventsService{
     formValues.sessions = [];
     EVENTS.push(formValues);
   }
+
+  updateEvent(event: IEvent): void {
+    const index = EVENTS.findIndex(x => x.id === event.id);
+    EVENTS[index] = event;
+  }
 }
