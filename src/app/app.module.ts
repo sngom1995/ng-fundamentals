@@ -18,6 +18,7 @@ import {NavBarComponent} from './nav/nav-bar.component';
 import {UserService} from './user/user.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CollapsibleWellComponent} from './common/collapsible-well.component';
+import { DurationPipe } from './events/shared/duration.pipe';
 
 export const checkDirtyState = (component: CreateEventComponent) => {
   if (component.isDirty) {
@@ -38,7 +39,8 @@ export const checkDirtyState = (component: CreateEventComponent) => {
     Error404Component,
     CreateSessionComponent,
     SessionListComponent,
-    CollapsibleWellComponent
+    CollapsibleWellComponent,
+    DurationPipe
   ],
   imports: [
     BrowserModule,

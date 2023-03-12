@@ -13,6 +13,7 @@ export class EventDetailsComponent implements OnInit{
   }
   event: IEvent;
   addMode: boolean;
+  filterBy = 'all';
   ngOnInit(): void{
     this.event = this.eventService.getEvent(+this.route.snapshot.params.id);
   }
