@@ -20,6 +20,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DurationPipe } from './events/shared/duration.pipe';
 import {TOASTR_TOKEN, JQ_TOKEN, Toastr, CollapsibleWellComponent} from './common';
 import { SimpleModalComponent } from './common/simple-modal.component';
+import {ModalTriggerDirective} from './common/modal-trigger.directive';
 
 export const checkDirtyState = (component: CreateEventComponent) => {
   if (component.isDirty) {
@@ -45,7 +46,8 @@ let jQuery = window['$'];
     SessionListComponent,
     CollapsibleWellComponent,
     DurationPipe,
-    SimpleModalComponent
+    SimpleModalComponent,
+    ModalTriggerDirective
   ],
   imports: [
     BrowserModule,
