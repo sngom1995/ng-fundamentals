@@ -17,8 +17,9 @@ import {EventAppComponent} from './event-app.component';
 import {NavBarComponent} from './nav/nav-bar.component';
 import {UserService} from './user/user.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {CollapsibleWellComponent} from './common/collapsible-well.component';
 import { DurationPipe } from './events/shared/duration.pipe';
+import {TOASTR_TOKEN, JQ_TOKEN, Toastr, CollapsibleWellComponent} from './common';
+import { SimpleModalComponent } from './common/simple-modal.component';
 
 export const checkDirtyState = (component: CreateEventComponent) => {
   if (component.isDirty) {
@@ -26,6 +27,9 @@ export const checkDirtyState = (component: CreateEventComponent) => {
   }
   return true;
 };
+
+let toastr: Toastr = window['toastr'];
+let jQuery = window['$'];
 
 
 @NgModule({
@@ -40,7 +44,8 @@ export const checkDirtyState = (component: CreateEventComponent) => {
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
-    DurationPipe
+    DurationPipe,
+    SimpleModalComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +55,11 @@ export const checkDirtyState = (component: CreateEventComponent) => {
   ],
   providers: [
     EventsService,
+    {
+      provide: TOASTR_TOKEN, useValue: toastr
+    },
     {provide: 'canDeactivateCreateEvent', useValue: checkDirtyState},
+    {provide: JQ_TOKEN, useValue: jQuery},
     EventListResolverService,
     UserService
   ],

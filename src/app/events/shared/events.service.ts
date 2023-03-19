@@ -1,6 +1,7 @@
-import {IEvent} from '../event';
-import {Injectable} from '@angular/core';
+import {IEvent, ISession} from '../event';
+import {EventEmitter, Injectable} from '@angular/core';
 import {Subject} from 'rxjs';
+import {Session} from 'protractor';
 const  EVENTS: IEvent[]  = [
   {
     id: 1,
@@ -336,5 +337,23 @@ export  class EventsService{
   updateEvent(event: IEvent): void {
     const index = EVENTS.findIndex(x => x.id === event.id);
     EVENTS[index] = event;
+  }
+
+  searchSessions(searchTerm: string): EventEmitter<ISession[]> {
+    var term = searchTerm.toLocaleUpperCase();
+    var sessions: ISession[] = [];
+    EVENTS.forEach(event =>{
+      var matchingSessions = event.sessions.filter(session => session.name.toLocaleUpperCase().indexOf(term) > -1);
+      matchingSessions = matchingSessions.map((session: any) => {
+        session.eventId = event.id;
+        return session;
+      });
+      sessions = sessions.concat(matchingSessions);
+    });
+    var emitter = new EventEmitter(true);
+    setTimeout(() => {
+      emitter.emit(sessions);
+    }, 100);
+    return emitter;
   }
 }
