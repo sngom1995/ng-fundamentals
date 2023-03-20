@@ -21,6 +21,7 @@ import { DurationPipe } from './events/shared/duration.pipe';
 import {TOASTR_TOKEN, JQ_TOKEN, Toastr, CollapsibleWellComponent} from './common';
 import { SimpleModalComponent } from './common/simple-modal.component';
 import {ModalTriggerDirective} from './common/modal-trigger.directive';
+import {UpvoteComponent} from './events/upvote.component';
 
 export const checkDirtyState = (component: CreateEventComponent) => {
   if (component.isDirty) {
@@ -47,7 +48,8 @@ let jQuery = window['$'];
     CollapsibleWellComponent,
     DurationPipe,
     SimpleModalComponent,
-    ModalTriggerDirective
+    ModalTriggerDirective,
+    UpvoteComponent
   ],
   imports: [
     BrowserModule,
